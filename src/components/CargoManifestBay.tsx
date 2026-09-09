@@ -21,7 +21,7 @@ export function CargoManifestBay({
   filename
 }: CargoManifestBayProps) {
   return (
-    <div className="flex h-full flex-col border-r border-[#263345] bg-[#121824] p-4">
+    <div className="flex h-full flex-col bg-[#121824] p-4">
       {/* Top Controls */}
       <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -61,7 +61,7 @@ export function CargoManifestBay({
           value={manifestText}
           onChange={(e) => setManifestText(e.target.value)}
           placeholder="Paste package.json or requirements.txt dependencies here..."
-          className="h-full w-full resize-none rounded-lg border border-[#263345] bg-[#0b0f16] p-3.5 font-mono text-xs leading-relaxed text-slate-200 placeholder:text-slate-600 focus:border-[#facc15] focus:outline-none focus:ring-1 focus:ring-[#facc15]"
+          className="h-full min-h-[220px] w-full resize-none rounded-lg border border-[#263345] bg-[#0b0f16] p-3.5 font-mono text-xs leading-relaxed text-slate-200 placeholder:text-slate-600 focus:border-[#facc15] focus:outline-none focus:ring-1 focus:ring-[#facc15]"
         />
       </div>
 

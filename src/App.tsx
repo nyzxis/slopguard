@@ -36,42 +36,50 @@ export default function App() {
   }, [activePreset]);
 
   return (
-    <div className="flex h-screen w-screen flex-col overflow-hidden bg-[#0f141c] text-slate-100 font-body">
-      {/* Top Industrial Hazard Header */}
-      <IndustrialHeader
-        presets={MANIFEST_PRESETS}
-        activePresetId={activePreset.id}
-        onSelectPreset={handleSelectPreset}
-        blastRadius={activePreset.blastRadius}
-        totalDependencies={activePreset.dependencies.length}
-        hallucinatedCount={hallucinatedDeps.length}
-        onOpenGuide={() => setIsGuideOpen(true)}
-      />
+    <div className="min-h-screen w-full bg-[#0a0e14] text-slate-100 font-body py-3 sm:py-8 px-3 sm:px-6 flex flex-col items-center justify-start selection:bg-[#facc15]/30 selection:text-white">
+      {/* Containerized Shell */}
+      <div className="w-full max-w-7xl mx-auto rounded-2xl border border-[#263345] bg-[#121824] shadow-2xl overflow-hidden flex flex-col">
+        {/* Top Industrial Hazard Header */}
+        <IndustrialHeader
+          presets={MANIFEST_PRESETS}
+          activePresetId={activePreset.id}
+          onSelectPreset={handleSelectPreset}
+          blastRadius={activePreset.blastRadius}
+          totalDependencies={activePreset.dependencies.length}
+          hallucinatedCount={hallucinatedDeps.length}
+          onOpenGuide={() => setIsGuideOpen(true)}
+        />
 
-      {/* Main Two-Tier Industrial Checkpoint */}
-      <div className="flex flex-1 flex-col md:flex-row overflow-hidden">
-        {/* Left: Cargo Manifest Bay (35%) */}
-        <div className="h-1/2 md:h-full md:w-[35%] overflow-hidden">
-          <CargoManifestBay
-            manifestText={manifestText}
-            setManifestText={setManifestText}
-            ecosystem={ecosystem}
-            setEcosystem={setEcosystem}
-            onRunAudit={handleRunAudit}
-            isAuditing={isAuditing}
-            filename={activePreset.filename}
-          />
-        </div>
+        {/* Main Two-Tier Industrial Checkpoint */}
+        <div className="flex flex-col lg:flex-row w-full divide-y lg:divide-y-0 lg:divide-x divide-[#263345]">
+          {/* Left: Cargo Manifest Bay (38%) */}
+          <div className="w-full lg:w-[38%] min-h-[400px] lg:min-h-[580px] flex flex-col">
+            <CargoManifestBay
+              manifestText={manifestText}
+              setManifestText={setManifestText}
+              ecosystem={ecosystem}
+              setEcosystem={setEcosystem}
+              onRunAudit={handleRunAudit}
+              isAuditing={isAuditing}
+              filename={activePreset.filename}
+            />
+          </div>
 
-        {/* Right: Decontamination Bay (65%) */}
-        <div className="h-1/2 md:h-full md:w-[65%] overflow-hidden">
-          <DecontaminationBay
-            dependencies={activePreset.dependencies}
-            onOpenQuarantine={() => setIsQuarantineOpen(true)}
-            hallucinatedDeps={hallucinatedDeps}
-          />
+          {/* Right: Decontamination Bay (62%) */}
+          <div className="w-full lg:w-[62%] min-h-[440px] lg:min-h-[580px] flex flex-col">
+            <DecontaminationBay
+              dependencies={activePreset.dependencies}
+              onOpenQuarantine={() => setIsQuarantineOpen(true)}
+              hallucinatedDeps={hallucinatedDeps}
+            />
+          </div>
         </div>
       </div>
+
+      {/* Footer Attribution */}
+      <footer className="mt-6 text-center font-mono text-[11px] text-slate-600">
+        SlopGuard • AI Package Hallucination & Supply Chain Defense • Built by <a href="https://nyzxis.vercel.app/" target="_blank" rel="noreferrer" className="text-[#facc15]/80 hover:text-[#facc15]">nyzxis</a>
+      </footer>
 
       {/* Quarantine Defense Claim Modal */}
       <QuarantineModal
