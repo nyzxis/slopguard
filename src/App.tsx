@@ -5,6 +5,7 @@ import { IndustrialHeader } from './components/IndustrialHeader';
 import { CargoManifestBay } from './components/CargoManifestBay';
 import { DecontaminationBay } from './components/DecontaminationBay';
 import { QuarantineModal } from './components/QuarantineModal';
+import { SlopGuideModal } from './components/SlopGuideModal';
 
 export default function App() {
   const [activePreset, setActivePreset] = useState<ManifestPreset>(MANIFEST_PRESETS[0]);
@@ -12,6 +13,7 @@ export default function App() {
   const [ecosystem, setEcosystem] = useState<Ecosystem>(MANIFEST_PRESETS[0].ecosystem);
   const [isAuditing, setIsAuditing] = useState(false);
   const [isQuarantineOpen, setIsQuarantineOpen] = useState(false);
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
 
   // Switch preset
   const handleSelectPreset = (preset: ManifestPreset) => {
@@ -43,6 +45,7 @@ export default function App() {
         blastRadius={activePreset.blastRadius}
         totalDependencies={activePreset.dependencies.length}
         hallucinatedCount={hallucinatedDeps.length}
+        onOpenGuide={() => setIsGuideOpen(true)}
       />
 
       {/* Main Two-Tier Industrial Checkpoint */}
@@ -75,6 +78,12 @@ export default function App() {
         isOpen={isQuarantineOpen}
         onClose={() => setIsQuarantineOpen(false)}
         hallucinatedDeps={hallucinatedDeps}
+      />
+
+      {/* Instructional Guide Modal */}
+      <SlopGuideModal
+        isOpen={isGuideOpen}
+        onClose={() => setIsGuideOpen(false)}
       />
     </div>
   );

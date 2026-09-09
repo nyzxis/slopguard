@@ -1,4 +1,4 @@
-import { ShieldCheck, WarningOctagon, Truck, Gauge } from '@phosphor-icons/react';
+import { ShieldCheck, WarningOctagon, Truck, Gauge, Question } from '@phosphor-icons/react';
 import type { ManifestPreset } from '../types/scanner';
 
 interface IndustrialHeaderProps {
@@ -8,6 +8,7 @@ interface IndustrialHeaderProps {
   blastRadius: number;
   totalDependencies: number;
   hallucinatedCount: number;
+  onOpenGuide: () => void;
 }
 
 export function IndustrialHeader({
@@ -16,7 +17,8 @@ export function IndustrialHeader({
   onSelectPreset,
   blastRadius,
   totalDependencies,
-  hallucinatedCount
+  hallucinatedCount,
+  onOpenGuide
 }: IndustrialHeaderProps) {
   return (
     <header className="border-b border-[#263345] bg-[#161e29]">
@@ -84,8 +86,16 @@ export function IndustrialHeader({
           </div>
         </div>
 
-        {/* Preset Selector Buttons */}
-        <div className="flex items-center gap-1.5 overflow-x-auto">
+        {/* Preset Selector & Guide */}
+        <div className="flex items-center gap-2 overflow-x-auto">
+          <button
+            onClick={onOpenGuide}
+            className="flex items-center gap-1.5 rounded border border-[#facc15]/40 bg-[#facc15]/10 px-2.5 py-1 font-mono text-xs font-bold text-[#facc15] hover:bg-[#facc15] hover:text-black transition-colors"
+          >
+            <Question size={14} weight="bold" />
+            <span>How to Use</span>
+          </button>
+
           <span className="font-mono text-[10px] uppercase text-slate-400 mr-1 hidden lg:inline">
             MANIFEST:
           </span>
